@@ -42,3 +42,9 @@
         console.log("Steak");
       }
       whatsForDinner();
+
+      // 6. Write a function `multiply(n1, n2)` that returns the value of n1 and n2 multiplied together. *Hint:* We use the `*` character to denote multiplication in JavaScript. Make sure you test to see that your function does what you expect.
+      const multiply = (n1, n2) => {
+        console.log(`${n1} `*` ${n2}`);    
+      }
+      multiply('5', '5');
