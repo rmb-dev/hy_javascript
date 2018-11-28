@@ -48,3 +48,10 @@
         console.log(`${n1} `*` ${n2}`);    
       }
       multiply('5', '5');
+
+      const multiply = (n1, n2) => n1 * n2;
+           // or
+           // const multiply = (n1, n2) => {
+           //     return n1 * n2;
+            // }
+      console.log(multiply(2,5));
