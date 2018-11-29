@@ -8,7 +8,7 @@
 
         const total = calcTip(100).toFixed(2);
         
-        console.log(`Your total bill is $${total}`);
+        console.log(`Your total bill is ${total}`);
 
         // eg: var total = restaurantBill(100,0.13,0.15);
         // console.log("Your total bill is " + total);
