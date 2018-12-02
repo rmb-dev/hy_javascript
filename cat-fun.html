@@ -21,7 +21,52 @@
 
   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
-<script  src="scripts/index.js"></script>
+ <script>
+     // AVAILABLE FUNCTIONS:
+ 
+ // Make a cat slide across the screen
+  const makeCatSlide = () => {
+    $("#slidingCat").addClass('animate-sliding-cat')
+    setTimeout(function(){
+      $("#slidingCat").removeClass('animate-sliding-cat')
+    }, 2000);
+  }
+
+  // Shows some cats - takes one argument number of cats; default is 1
+  const showCats = (numOfCats = 1) => {
+    const catList = [];
+    for (let i = 0; i < numOfCats; i++) {
+      catList.push(`<div class="cat"">
+          <img src="https://placekitten.com/200/300" alt="cats" />
+        </div>`) 
+    }
+    $('.more-cats').append(catList.join(''));
+  }
+  
+  // Hides the cats (actually removes them not just hides)
+  const removeCats = () => {
+    $('.more-cats').empty();
+  }
+
+
+// EXERCISE:
+
+// 1. Make a cat slide across the screen every 3 seconds (Hint: use the makeCatSlide function)
+
+// 2. After 10 seconds, stop the cat from sliding across the screen 
+
+// 3. Ask the user how many cats they want to see and then display them on the page using the showCats function.
+
+// 4. After 10 seconds, ask the user if they want to hide the cats. If the user says yes, use the provided 
+//    removeCats function to clear the cats. If the user says no, ask the user if they want to see more cats!
+
+//    BONUS: How can you refactor the code from exercise 3 to create a function that will get user input and return 
+//           the number of cats to show? The prompt string should be dynamic (Hint: use a parameter)
+
+
+ 
+  
+</script>
 </body>
 </html>
 
