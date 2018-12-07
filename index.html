@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I ❤️ Cats</title>
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Cabin" rel="stylesheet">
+   <style>
+     *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Cabin', sans-serif;
+  margin: 0;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(33,147,176,1) 0%, rgba(109,213,237,0.8589810924369747) 100%);
+}
+h1 {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  color: #2c3f58;
+}
+#slidingCat {
+    width: 200px;
+    height: 100px;
+    opacity: 0;
+    position: relative;
+}
+.animate-sliding-cat {
+    animation-name: runningCat;
+    animation-duration: 2s;
+}
+.more-cats {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cat {
+  margin-right: 3px;
+}
+@-webkit-keyframes runningCat {
+    0%   { left: 100%; opacity: 1;}
+    25%  { left: 50%; opacity: 1;}
+    100% { left: 0%; opacity: 0;}
+}
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>I ❤️ Cats</h1>
+  </header>
+
+  <div class="sliding-cat">
+    <img id="slidingCat" src="http://www.aljanh.net/data/archive/img/255494903.png" alt="cute cat">
+  </div>
+
+  <div class="more-cats">
+
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+     // AVAILABLE FUNCTIONS:
+
+ // Make a cat slide across the screen
+  const makeCatSlide = () => {
+    $("#slidingCat").addClass('animate-sliding-cat')
+    setTimeout(function(){
+      $("#slidingCat").removeClass('animate-sliding-cat')
+    }, 2000);
+  }
+  // Shows some cats - takes one argument number of cats; default is 1
+  const showCats = (numOfCats = 1) => {
+    const catList = [];
+    for (let i = 0; i < numOfCats; i++) {
+      catList.push(`<div class="cat"">
+          <img src="https://placekitten.com/200/300" alt="cats" />
+        </div>`)
+    }
+    $('.more-cats').append(catList.join(''));
+  }
+
+  // Hides the cats (actually removes them not just hides)
+  const removeCats = () => {
+    $('.more-cats').empty();
+  }
+// EXERCISE:
+// 1. Make a cat slide across the screen every 3 seconds (Hint: use the makeCatSlide function)
+// 2. After 10 seconds, stop the cat from sliding across the screen
+// 3. Ask the user how many cats they want to see and then display them on the page using the showCats function.
+// 4. After 10 seconds, ask the user if they want to hide the cats. If the user says yes, use the provided
+//    removeCats function to clear the cats. If the user says no, ask the user if they want to see more cats!
+//    BONUS: How can you refactor the code from exercise 3 to create a function that will get user input and return
+//           the number of cats to show? The prompt string should be dynamic (Hint: use a parameter)
+
+
+</script>
+</body>
+</html>
