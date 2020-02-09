@@ -81,14 +81,6 @@ h1 {
   border-radius: 5px;
   transform: scale(1);
 }
-.box {
-  box-sizing: border-box;
-  border-radius: 5px;
-  width: 300px;
-  margin: 100px auto 0;
-  text-align: center;
-  padding: 10px;
-}
 
 input {
   margin: 5px 30px;
