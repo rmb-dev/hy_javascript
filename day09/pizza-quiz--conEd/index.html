@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<title>Pizza Prophet</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1>Pizza Pr<span class="crystal">🔮</span>phet</h1>
+		</header>
+
+		<main>
+			<form action="">
+				<p>What size pizza are you looking for?</p>
+				<div class="choices">
+					<label for="pie">pie</label>
+					<input type="radio" id="pie" value="pie" name="size">
+
+					<label for="slice">slice</label>
+					<input type="radio" id="slice" value="slice" name="size">
+				</div>
+
+				<p>How much are you looking to spend?</p>
+				<div class="choices">
+					<label for="$">a little</label>
+					<input type="radio" name="price" id="$" value="$">
+
+					<label for="$$">a little more</label>
+					<input type="radio" name="price" id="$$" value="$$">
+				</div>
+				<input type="submit" value="the pr🔮phet speaks">
+			</form>
+
+			<section class="results"></section>
+		</main>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
