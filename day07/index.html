@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The DOM & Browser Events</title>
+</head>
+
+<body>
+    <main>
+        <div>
+            <span>JS</span>
+        </div>
+    </main>
+</body>
+
+<style>
+    main {
+        background-color: #f7df1e;
+        width: 100px;
+        height: 100px;
+        padding: 50px;
+        margin: 20px;
+        position: relative;
+    }
+
+    div {
+        font-size: 86px;
+        font-family: Gill Sans Extrabold, sans-serif;
+        font-weight: bold;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    div span {
+        position: relative;
+        display: inline-block;
+        animation: animate 2s ease-in-out infinite;
+    }
+
+    @keyframes animate {
+        0% 100% {
+            bottom: 0;
+        }
+
+        60% {
+            bottom: 10px;
+        }
+    }
+
+    span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    span:nth-child(2) {
+        animation-delay: 0.5s;
+    }
+</style>
+
+<script>
+    // $("button").on("click", function () {
+    //     comsole.log("you clicked the button");
+    // })
+
+    // const myFunction = function () {
+    //     console.log("you clicked this button");
+    // }
+
+    // const on = function (event, callBackFunction) {
+    //     Hey when event happen, do this:
+    //     callBackFunction(;)
+    // }
+    // const jQueryPromise = $.ajax({
+    //     url: 'https://pokeapi.co/api/v2/pokemon/1/',
+    //     dataType: 'json',
+    //     method: 'GET'
+    // })
+    // callback function
+    // .then(function (response) {
+    //     console.log(jQueryPromise)
+    // });
+    // jQueryPromise
+    //     .then((recive) => {
+    //         console.log(recive);
+    //     })
+
+    //     .fail((error) => {
+    //         console.log(error);
+    //     })
+
+
+    // I remember that you promised me candey!
+    // What will I do if you FULFILL your promise, what will I do if you REJECT your promise?
+    // Do I got candy? What was the result of your promise?
+    // If you give me candey:
+    //   You FULFILL your promise! I feel "yay! Candey".
+    // If you don't give candey: 
+    //   You REJECT your promise! I feel "I hate you I hate you I hate you I hate you".
+    const candeyMemory = new Promise(function (fulfill, reject) {
+        const candy = false;
+        if (candy === true) {
+            fulfill("yay! Candey");
+        } else {
+            reject(new Error("I hate you I hate you I hate you I hate you"));
+        }
+        setTimeout(function () {
+            if (candy === true) {
+                fulfill("yay! Candey");
+            } else {
+                reject("I hate you I hate you I hate you I hate you")
+            }
+        }, 5000)
+    })
+    console.log(candeyMemory);
+    candeyMemory
+        .then((candyFeelings) => {
+            console.log(candyFeelings);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+
+
+
+
+</script>
+
+</html>
