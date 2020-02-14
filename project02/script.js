@@ -1,36 +1,63 @@
+// creating an object for app
 const app = {};
-app.key = "138a28e172666d5b25ff05bf896947a3"
+// create a property to hold the key
+app.key = `YOUR_API_KEY`;
+// 
+$(function () {
+  app.init();
+});
 
+app.init = function () {
 
-
-// UV Index forecast for Toronto
-// openuv.uv({ lat: 43.65, lng: 79.38 }, (err, data) => {
-//     console.log(JSON.stringify(data, null, 2));
-// });
-
-
-app.getUv = function () {
-    $.ajax({
-        beforeSend: function (request) {
-            request.setRequestHeader('x-access-token', '138a28e172666d5b25ff05bf896947a3');
-        },
-        url: `https://api.openuv.io/api/v1/uv?`,
-        type: 'GET',
-        dataType: 'json',
-        data: {
-            api_key: app.key,
-            // q: result,
-            format: 'json',
-            lat: 43.65,
-            lng: 79.38,
-            alt: 76
-        }
-    }).then(function (result) {
-        console.log(result);
-        // const { data } = result;
-        // app.displayUv(data);
-    })
 }
-app.displayUv = function () { }
+// code off the app goes here
+function getWeather(city) {
+  $.ajax({
+    url: "http://api.weatherstack.com/current",
+    type: "GET",
+    dataType: "json",
+    data: {
+      access_key: app.key,
+      query: city
+    }
+  }).then(response => {
+    console.log(response)
+    app.displayWeather(response)
 
-app.getUv();
+  });
+
+  app.displayWeather = function (weather) {
+    $(".name").html(weather.location.name);
+    $(".country").html(weather.location.country);
+    $(".weather_descriptions").html(weather.current.descriptions);
+    $(".temperature").html(weather.current.temp_f + "°C");
+    $(".wind").html(weather.current.wind + "kmph");
+    $(".humidity").html(weather.current.humidity);
+    $(".feelslike").html(weather.current.feelslike);
+    $(".uv_index").html(weather.current.uv_index);
+    $(".weather_icons").html(weather.current.condition);
+    $(".icon").html(`<img src="${weather.current.icon}" alt="" />`);
+  }
+  console.log(data);
+
+}
+error = function () {
+  console.log("Error geting weather for your location.");
+}
+
+
+
+// get the user location
+$.ajax({
+  url: "https://ipinfo.io",
+  method: 'GET',
+  dataType: "json",
+  // pre-request callback function that can be used to modify the XMLHTTPRequest
+  beforeSend: function (req) {
+    // set the value of an HTTP request header, token is merged into one single request header
+    req.setRequestHeader('Authorization', "b63754e2939676");
+  }
+  // returning request 
+}).then(response => {
+  getWeather(response.city)
+});
