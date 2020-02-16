@@ -55,7 +55,7 @@ $.ajax({
   // pre-request callback function that can be used to modify the XMLHTTPRequest
   beforeSend: function (req) {
     // set the value of an HTTP request header, token is merged into one single request header
-    req.setRequestHeader('Authorization', "b63754e2939676");
+    req.setRequestHeader('Authorization', "YOUR_API_KEY");
   }
   // returning request 
 }).then(response => {
