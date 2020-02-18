@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=`, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Barlow&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>CATEGORY IS...</h1>
+      <h2>
+        Sort RuPaul's Drag Race queens by season, winners or Miss Congeniality
+      </h2>
+      <select name="" id="">
+        <option value="1" >Season 1</option>
+        <option value="2">Season 2</option>
+        <option value="3">Season 3</option>
+        <option value="4">Season 4</option>
+        <option value="5">Season 5</option>
+        <option value="6">Season 6</option>
+        <option value="7">Season 7</option>
+        <option value="8">Season 8</option>
+        <option value="9">Season 9</option>
+      </select>
+    </header>
+
+    <div class="queen-container">
+      <!-- dynamic content goes here -->
+    </div>
+  </div>
+  <footer>
+    <p>
+      data courtesy of the
+      <a href="https://drag-race-api.readme.io/docs">No Key No Shade API</a>
+    </p>
+  </footer>
+
+  <!-- Import jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+  <script>
+    const app = {};
+
+    app.displayQueens = queens => {
+      queens.forEach(queen => {
+        const season = queen.seasons[0].id;
+        const htmlToAppend = `
+          <div class="queen-card">
+            <h3 class="queen-title">${queen.name}</h3>
+            <div class="image-container">
+              <img class="queen-image" src=${queen.image_url} alt=${queen.name} />
+            </div>
+            <h4>Season: ${season} </h4>
+          </div>
+          `;
+        $(".queen-container").append(htmlToAppend);
+      });
+    };
+
+    //AJAX call for queens by season
+    app.getQueens = query => {
+      $.ajax({
+        url: `http://www.nokeynoshade.party/api/seasons/${query}/queens`,
+        method: "GET",
+        dataType: "json",
+        data: {
+          q: query
+        }
+      }).then(result => {
+        app.displayQueens(result);
+      });
+    };
+
+    app.getSelectValue = () => {
+      $("select").change(() => {
+        const selection = $("option:selected").val();
+        $(".queen-container").empty();
+        app.getQueens(selection);
+      });
+    };
+
+    app.init = () => {
+      // Set default to render season 1 until queen has been selected
+      app.getQueens(1);
+      app.getSelectValue();
+    };
+
+    $(function () {
+      app.init();
+    });
+  </script>
+</body>
+
+</html>
